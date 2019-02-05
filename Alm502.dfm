@@ -1,0 +1,2580 @@
+object FRegDinCtbl: TFRegDinCtbl
+  Left = 207
+  Top = 112
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Registro Dinamica Contable'
+  ClientHeight = 579
+  ClientWidth = 797
+  Color = 12904163
+  Font.Charset = ANSI_CHARSET
+  Font.Color = clNavy
+  Font.Height = -11
+  Font.Name = 'Comic Sans MS'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnActivate = FormActivate
+  OnClose = FormClose
+  OnKeyPress = FormKeyPress
+  PixelsPerInch = 96
+  TextHeight = 15
+  object pnlPadre: TPanel
+    Left = 0
+    Top = 0
+    Width = 797
+    Height = 53
+    Align = alTop
+    BevelInner = bvLowered
+    Color = 10207162
+    TabOrder = 0
+    object lblCia: TLabel
+      Left = 8
+      Top = 5
+      Width = 49
+      Height = 15
+      Caption = 'Compa'#241#237'a'
+    end
+    object Label1: TLabel
+      Left = 335
+      Top = 5
+      Width = 39
+      Height = 15
+      Caption = 'Asiento'
+    end
+    object Label2: TLabel
+      Left = 497
+      Top = 5
+      Width = 62
+      Height = 15
+      Caption = 'Descripci'#243'n'
+    end
+    object Label16: TLabel
+      Left = 397
+      Top = 8
+      Width = 34
+      Height = 15
+      Caption = 'Indica'
+    end
+    object dblcCIA: TwwDBLookupCombo
+      Left = 8
+      Top = 22
+      Width = 49
+      Height = 23
+      DropDownAlignment = taLeftJustify
+      Selected.Strings = (
+        'CIAID'#9'2'#9'ID'#9'F'
+        'CIADES'#9'40'#9'Descripci'#243'n'#9'F'
+        'CIAABR'#9'15'#9'Abreviatura'#9'F')
+      DataField = 'CIAID'
+      DataSource = DMALM.dsPadre
+      LookupTable = DMALM.cdsCIA
+      LookupField = 'CIAID'
+      Options = [loColLines, loTitles]
+      DropDownCount = 15
+      MaxLength = 2
+      TabOrder = 0
+      AutoDropDown = False
+      ShowButton = True
+      SearchDelay = 2
+      PreciseEditRegion = False
+      AllowClearKey = False
+      OnExit = dblcCIAExit
+    end
+    object dbeCIA: TEdit
+      Left = 60
+      Top = 22
+      Width = 269
+      Height = 23
+      Enabled = False
+      TabOrder = 1
+    end
+    object dbeAsiento: TwwDBEdit
+      Left = 335
+      Top = 22
+      Width = 45
+      Height = 23
+      CharCase = ecUpperCase
+      DataField = 'ASIENTO'
+      DataSource = DMALM.dsPadre
+      TabOrder = 2
+      UnboundDataType = wwDefault
+      WantReturns = False
+      WordWrap = False
+    end
+    object dbeDescripP: TwwDBEdit
+      Left = 496
+      Top = 22
+      Width = 240
+      Height = 23
+      CharCase = ecUpperCase
+      DataField = 'DESCRIP'
+      DataSource = DMALM.dsPadre
+      TabOrder = 4
+      UnboundDataType = wwDefault
+      WantReturns = False
+      WordWrap = False
+    end
+    object Z2bbtnOK: TBitBtn
+      Left = 760
+      Top = 17
+      Width = 28
+      Height = 28
+      Hint = 'Aceptar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 5
+      OnClick = Z2bbtnOKClick
+      Glyph.Data = {
+        DE010000424DDE01000000000000760000002800000024000000120000000100
+        0400000000006801000000000000000000001000000010000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+        3333333333333333333333330000333333333333333333333333F33333333333
+        00003333344333333333333333388F3333333333000033334224333333333333
+        338338F3333333330000333422224333333333333833338F3333333300003342
+        222224333333333383333338F3333333000034222A22224333333338F338F333
+        8F33333300003222A3A2224333333338F3838F338F33333300003A2A333A2224
+        33333338F83338F338F33333000033A33333A222433333338333338F338F3333
+        0000333333333A222433333333333338F338F33300003333333333A222433333
+        333333338F338F33000033333333333A222433333333333338F338F300003333
+        33333333A222433333333333338F338F00003333333333333A22433333333333
+        3338F38F000033333333333333A223333333333333338F830000333333333333
+        333A333333333333333338330000333333333333333333333333333333333333
+        0000}
+      NumGlyphs = 2
+    end
+    object chkICorpP: TCheckBox
+      Left = 396
+      Top = 26
+      Width = 85
+      Height = 17
+      Alignment = taLeftJustify
+      Caption = 'Corporativa'
+      TabOrder = 3
+    end
+  end
+  object pnlNieto: TPanel
+    Left = 0
+    Top = 291
+    Width = 797
+    Height = 288
+    Align = alBottom
+    BevelInner = bvRaised
+    BevelOuter = bvLowered
+    Color = 10207162
+    Enabled = False
+    TabOrder = 2
+    object dbgNieto: TwwDBGrid
+      Left = 2
+      Top = 23
+      Width = 793
+      Height = 222
+      DisableThemesInTitle = False
+      Selected.Strings = (
+        'KDXID'#9'8'#9'N'#186#9'F'
+        'ARTID'#9'10'#9'C'#243'digo~Art'#237'culo'#9'F'
+        'ARTDES'#9'45'#9'Detalle'#9'F'
+        'KDXCNTG'#9'9'#9'Cantidad G'#9'F'
+        'ARTPCG'#9'9'#9'Precio G'#9'F'
+        'KDXCNTU'#9'9'#9'Cantidad U'#9'F'
+        'ARTPCU'#9'9'#9'Precio U'#9'F')
+      IniAttributes.Delimiter = ';;'
+      TitleColor = 10207162
+      FixedCols = 0
+      ShowHorzScrollBar = True
+      Align = alClient
+      Color = 15792632
+      DataSource = DMALM.dsNieto
+      KeyOptions = [dgEnterToTab]
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgWordWrap]
+      TabOrder = 2
+      TitleAlignment = taCenter
+      TitleFont.Charset = ANSI_CHARSET
+      TitleFont.Color = clNavy
+      TitleFont.Height = -11
+      TitleFont.Name = 'Comic Sans MS'
+      TitleFont.Style = []
+      TitleLines = 2
+      TitleButtons = False
+      UseTFields = False
+      OnDblClick = dbgNietoDblClick
+      OnKeyDown = dbgNietoKeyDown
+      FooterColor = 10207162
+      FooterCellColor = 12904163
+      DesignSize = (
+        789
+        218)
+      object Z2dbgNieto: TwwIButton
+        Left = 0
+        Top = -1
+        Width = 28
+        Height = 35
+        AllowAllUp = True
+        Anchors = [akLeft]
+        Glyph.Data = {
+          96010000424D9601000000000000760000002800000017000000180000000100
+          0400000000002001000000000000000000001000000010000000000000000000
+          8000008000000080800080000000800080008080000080808000C0C0C0000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00BBBBBBBBBBBB
+          BBBBBBBBBBB08887777777777777777778B08800000000000000000078B0880F
+          FFFFFFFFFFFFFFF078B0880FFFFFFFFFFFFFFFF078B0880FFFFFFFFFFFFFFFF0
+          78B0880FFFFFFFFFFFFFFFF078B0880FFFFFFFFFFFFFFFF078B0880FFFFFFFFF
+          FFFFFFF078B0880FFFFFFFFFFFFFFFF078B0880FFFFFFFFFFFFFFFF078B0880F
+          FFFFFFFFFFFFFFF078B0880FFFFFFFFFFFFFFFF078B0880FFFFFFFFFFFFFFFF0
+          78B0880FFFFFFFFFFFFFFFF078B0880FFFFFFFFFFFFFFFF078B0880FFFFFFFFF
+          FF00000078B0880FFFFFFFFFFF0FF88088B0880FFFFFFFFFFF0F880888B0880F
+          FFFFFFFFFF08808888B0880FFFFFFFFFFF08088888B088000000000000008888
+          88B08888888888888888888888B08888888888888888888888B0}
+        OnClick = Z2dbgNietoClick
+      end
+    end
+    object stxTitulo1: TPanel
+      Left = 2
+      Top = 2
+      Width = 793
+      Height = 21
+      Align = alTop
+      BevelInner = bvLowered
+      BevelOuter = bvNone
+      Caption = 'Detalle Din'#225'mica Detalle'
+      Color = clHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 1
+    end
+    object pnlControl: TPanel
+      Left = 2
+      Top = 245
+      Width = 793
+      Height = 41
+      Align = alBottom
+      BevelOuter = bvNone
+      Color = 10207162
+      TabOrder = 0
+      object Label14: TLabel
+        Left = 22
+        Top = -1
+        Width = 21
+        Height = 15
+        Caption = 'Mes'
+        Transparent = True
+      end
+      object Label15: TLabel
+        Left = 70
+        Top = -1
+        Width = 20
+        Height = 15
+        Caption = 'A'#241'o'
+        Transparent = True
+      end
+      object Z2bbtnRegNieto: TBitBtn
+        Left = 661
+        Top = 9
+        Width = 28
+        Height = 28
+        Hint = 'Modifica Datos de Cabecera'
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 3
+        TabStop = False
+        Visible = False
+        OnClick = Z2bbtnRegNietoClick
+        Glyph.Data = {
+          9A050000424D9A05000000000000360000002800000014000000170000000100
+          1800000000006405000000000000000000000000000000000000C0C0C0C0C0C0
+          C0C0C0C0C0C0C0C0C0C0C0C0000000FF0000FF0000FF0000FF0000FF0000FF00
+          00FF0000FF0000FF0000000000C0C0C0C0C0C0C0C0C0C0C0C000000000000000
+          0000000000000000000000FF0000000000FF0000FF0000FF0000FF0000FF0000
+          FF0000FF0000000000000000000000000000C0C0C0000000FFFFFFFFFFFFFFFF
+          FFCCCCCC00000000000000000000000000000000000000000000000000000000
+          0000000000FFFFFFFFFFFF000000C0C0C0000000FFFFFFFFFFFFFFFFFFFFFFFF
+          000000000000CCCCCCCCCCCCCCCCCCCCCCCC999999CCCCCC9999990000000000
+          00FFFFFFFFFFFF000000C0C0C0000000FFFFFFFFFFFFFFFFFF000000CCCCCCFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFF666666999999CCCCCC999999000000FFFFFF
+          FFFFFF000000C0C0C0000000FFFFFFFFFFFFCCCCCC000000FFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFCCCCCC999999666666CCCCCC666666000000FFFFFFFFFFFF00
+          0000C0C0C0000000FFFFFFFFFFFF999999999999FFFFFFFFFFFFFFFFFFFFFFFF
+          CCCCCC666666000000666666CCCCCC999999000000FFFFFFFFFFFF000000C0C0
+          C0000000FFFFFFFFFFFF000000CCCCCCFFFFFFFFFFFFFFFFFFFFFFFF00000099
+          9999000000999999000000000000000000FFFFFFFFFFFF000000C0C0C0000000
+          FFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFCCCCCC0000000000000000
+          00000000666666CCCCCC000000000000FFFFFF000000C0C0C0000000FFFFFFFF
+          FFFF000000FFFFFFCCCCCCFFFFFFFFFFFF999999000000000000666666CCCCCC
+          000000CCCCCC666666000000FFFFFF000000C0C0C0000000FFFFFFFFFFFF0000
+          00FFFFFFCCCCCCFFFFFFFFFFFF666666000000999999000000CCCCCC00000066
+          6666CCCCCC000000FFFFFF000000C0C0C0000000FFFFFFFFFFFF000000FFFFFF
+          CCCCCCFFFFFFFFFFFF999999000000CCCCCC000000666666CCCCCC0000000000
+          00FFFFFFFFFFFF000000C0C0C0000000FFFFFFFFFFFF000000FFFFFFCCCCCC66
+          6666FFFFFFFFFFFF000000666666CCCCCC000000FFFFFF000000FFFFFFFFFFFF
+          FFFFFF000000C0C0C0000000FFFFFFFFFFFF000000FFFFFFCCCCCC0000009999
+          99FFFFFF000000000000FFFFFF000000000000FFFFFFFFFFFFFFFFFFFFFFFF00
+          0000C0C0C0000000FFFFFFFFFFFF000000FFFFFFCCCCCC000000000000FFFFFF
+          666666000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000C0C0
+          C0000000FFFFFFFFFFFF000000FFFFFFCCCCCC000000000000FFFFFFCCCCCC00
+          0000FFFFFF999999FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000C0C0C0000000
+          FFFFFFFFFFFF000000FFFFFFCCCCCC000000000000FFFFFFCCCCCC000000FFFF
+          FFFFFFFF000000000000000000000000000000000000C0C0C0000000FFFFFFFF
+          FFFF000000FFFFFFCCCCCC000000FFFFFF000000000000FFFFFFFFFFFFFFFFFF
+          000000FFFFFFFFFFFFFFFFFF000000C0C0C0C0C0C0000000FFFFFFFFFFFF0000
+          00FFFFFFCCCCCC000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FF
+          FFFFFFFFFF000000C0C0C0C0C0C0C0C0C0000000FFFFFFFFFFFF000000FFFFFF
+          666666000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFF0000
+          00C0C0C0C0C0C0C0C0C0C0C0C0000000000000000000000000FFFFFF99999900
+          0000000000000000000000000000000000000000000000000000C0C0C0C0C0C0
+          C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0000000999999999999000000C0C0
+          C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0
+          C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0000000000000C0C0C0C0C0C0C0C0C0
+          C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0}
+      end
+      object Z2bbtnGrabaNieto: TBitBtn
+        Left = 700
+        Top = 9
+        Width = 28
+        Height = 28
+        Hint = 'Grabar Registro'
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 4
+        TabStop = False
+        OnClick = Z2bbtnGrabaNietoClick
+        Glyph.Data = {
+          8A010000424D8A01000000000000760000002800000017000000170000000100
+          0400000000001401000000000000000000001000000010000000000000000000
+          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+          3333333333303000077777777777770003300000078888888888880000300000
+          0780088888888800003000000780088888888800003000000780088888888800
+          0030000007888888888888000030000000000000000000000030000000000000
+          0000000000300000FFFFFFFFFFFFFF0000300000FFFFFFFFFFFFFF0000300000
+          FFFFFFFFFFFFFF0000300000FFFFFFFFFFFFFF0000300000FFFFFFFFFFFFFF00
+          00300000FFFFFFFFFFFFFF0000300000FFFFFFFFFFFFFF0000300000FFFFFFFF
+          FFFFFF0000300000FFFFFFFFFFFFFF0000300000FFFFFFFFFFFFFF0000300000
+          FFFFFFFFFFFFFF07703000009999999999999907703000009999999999999900
+          0030300099999999999999000330}
+      end
+      object Z1sbDinCtbl: TBitBtn
+        Left = 144
+        Top = 3
+        Width = 46
+        Height = 37
+        Hint = 'Consulta de Dinamica Contable'
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 2
+        OnClick = Z1sbDinCtblClick
+        Glyph.Data = {
+          CE020000424DCE020000000000007600000028000000220000001E0000000100
+          0400000000005802000000000000000000001000000010000000000000000000
+          80000080000000808000800000008000800080800000C0C0C000808080000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFF000FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFF0078800FFFFFFFFFFFFFFFF000000FFFFFFFFF00777888800
+          FFFFFFFFFFFFFF000000FFFFFFF007777800888800FFFFFFFFFFFF000000FFFF
+          F0077778878800888800FFFFFFFFFF000000FFF00777788787888800888800FF
+          FFFFFF000000FF07777887778788888800888800FFFFFF000000FF8778877777
+          87888888880088880FFFFF000000FF888777777787888888888800880FFFFF00
+          0000F8878777777787888888888888000FFFFF000000F8F7877777778F888888
+          8888888800FFFF000000F8F78777777F8877888888888888800FFF000000F8F7
+          87777FF777887788888888888080FF000000F8F7877FF7777777887788888888
+          80780F000000F8F78FF77799778877887788888880788F000000F8FF8877AA77
+          8877777088778888808FFF000000F88F778877887777700F7088778880FFFF00
+          0000FFF88F77888877700FFFF077887780FFFF000000FFFFF88F7788800FFFCC
+          F7087788FFFFFF000000FFFFFFF88F7788FFCCFFFF0888FFFFFFFF000000FFFF
+          FFFFF88F778FFFFCCF70FFFFFFFFFF000000FFFFFFFFFFF88F8FFCCFFFF70FFF
+          FFFFFF000000FFFFFFFFFFFFF888FFFFCCFF70FFFFFFFF000000FFFFFFFFFFFF
+          FFF8FFCCFFFFF70FFFFFFF000000FFFFFFFFFFFFFFFF8FFFFFCCFF700FFFFF00
+          0000FFFFFFFFFFFFFFFFF8FFCCFFFFF88FFFFF000000FFFFFFFFFFFFFFFFFF8F
+          FFFFF88FFFFFFF000000FFFFFFFFFFFFFFFFFFF8FFF88FFFFFFFFF000000FFFF
+          FFFFFFFFFFFFFFFF888FFFFFFFFFFF000000}
+        Layout = blGlyphTop
+      end
+      object dbseMes: TSpinEdit
+        Left = 20
+        Top = 15
+        Width = 40
+        Height = 24
+        MaxLength = 2
+        MaxValue = 12
+        MinValue = 1
+        TabOrder = 0
+        Value = 1
+        OnExit = dbseMesExit
+      end
+      object dbseAno: TSpinEdit
+        Left = 68
+        Top = 15
+        Width = 54
+        Height = 24
+        MaxLength = 4
+        MaxValue = 2050
+        MinValue = 1998
+        TabOrder = 1
+        Value = 1998
+      end
+      object Z2bbtnContab: TBitBtn
+        Left = 408
+        Top = 8
+        Width = 30
+        Height = 30
+        Hint = 'Contabilizar'
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 5
+        Visible = False
+        Glyph.Data = {
+          06020000424D060200000000000076000000280000001A000000190000000100
+          04000000000090010000CE0E0000D80E00001000000000000000000000000000
+          8000008000000080800080000000800080008080000080808000C0C0C0000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00888888888888
+          8888888888888800000080000000000000000000000008000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000BBBBBB
+          BBBBBBBBB00000000000000000000000000000000000000000000000BBBBBBBB
+          BBBBBBBBBBB00000000000000000000000000000000000000000000000000000
+          0000000000000000000000BBBB0BBB0B0B0B0BBB0BBB0000000000B00B0B0B0B
+          0B0B0B0B0B0B0000000000B00B0B0B0B0B0B0BBB0B0B0000000000B0000B0B0B
+          0B0B000B0B0B0000000000B0000BBB0BBB0B0BBB0BBB0000000000B000000000
+          000B00000B000000000000B00B00000000BBB0000B000000000000BBBB000000
+          000B000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000080000000000000000000000008000000888888888888
+          88888888888888000000}
+      end
+      object Z2bbtnPreview: TBitBtn
+        Left = 450
+        Top = 8
+        Width = 30
+        Height = 30
+        Hint = 'Previa Contabilizaci'#243'n'
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 6
+        OnClick = Z2bbtnPreviewClick
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000130B0000130B00001000000000000000000000000000
+          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+          33033333333333333F7F3333333333333000333333333333F777333333333333
+          000333333333333F777333333333333000333333333333F77733333333333300
+          033333333FFF3F777333333700073B703333333F7773F77733333307777700B3
+          33333377333777733333307F8F8F7033333337F333F337F3333377F8F9F8F773
+          3333373337F3373F3333078F898F870333337F33F7FFF37F333307F99999F703
+          33337F377777337F3333078F898F8703333373F337F33373333377F8F9F8F773
+          333337F3373337F33333307F8F8F70333333373FF333F7333333330777770333
+          333333773FF77333333333370007333333333333777333333333}
+        NumGlyphs = 2
+      end
+    end
+  end
+  object pnlHijo: TPanel
+    Left = 0
+    Top = 53
+    Width = 797
+    Height = 238
+    Align = alClient
+    BevelInner = bvLowered
+    BevelOuter = bvNone
+    BevelWidth = 2
+    Color = 12904163
+    Enabled = False
+    TabOrder = 1
+    object dbgHijo: TwwDBGrid
+      Left = 2
+      Top = 22
+      Width = 793
+      Height = 185
+      DisableThemesInTitle = False
+      Selected.Strings = (
+        'KDXID'#9'8'#9'N'#186#9'F'
+        'ARTID'#9'10'#9'C'#243'digo~Art'#237'culo'#9'F'
+        'ARTDES'#9'45'#9'Detalle'#9'F'
+        'KDXCNTG'#9'9'#9'Cantidad G'#9'F'
+        'ARTPCG'#9'9'#9'Precio G'#9'F'
+        'KDXCNTU'#9'9'#9'Cantidad U'#9'F'
+        'ARTPCU'#9'9'#9'Precio U'#9'F')
+      IniAttributes.Delimiter = ';;'
+      TitleColor = 10207162
+      FixedCols = 0
+      ShowHorzScrollBar = True
+      Align = alClient
+      Color = 15792632
+      DataSource = DMALM.dsHijo
+      KeyOptions = [dgEnterToTab]
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgWordWrap]
+      TabOrder = 1
+      TitleAlignment = taCenter
+      TitleFont.Charset = ANSI_CHARSET
+      TitleFont.Color = clNavy
+      TitleFont.Height = -11
+      TitleFont.Name = 'Comic Sans MS'
+      TitleFont.Style = []
+      TitleLines = 2
+      TitleButtons = False
+      UseTFields = False
+      OnDblClick = dbgHijoDblClick
+      OnKeyDown = dbgHijoKeyDown
+      FooterColor = 10207162
+      FooterCellColor = 12904163
+      DesignSize = (
+        789
+        181)
+      object Z2dbgHijo: TwwIButton
+        Left = 0
+        Top = 0
+        Width = 28
+        Height = 35
+        AllowAllUp = True
+        Anchors = [akLeft]
+        Glyph.Data = {
+          96010000424D9601000000000000760000002800000017000000180000000100
+          0400000000002001000000000000000000001000000010000000000000000000
+          8000008000000080800080000000800080008080000080808000C0C0C0000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00BBBBBBBBBBBB
+          BBBBBBBBBBB08887777777777777777778B08800000000000000000078B0880F
+          FFFFFFFFFFFFFFF078B0880FFFFFFFFFFFFFFFF078B0880FFFFFFFFFFFFFFFF0
+          78B0880FFFFFFFFFFFFFFFF078B0880FFFFFFFFFFFFFFFF078B0880FFFFFFFFF
+          FFFFFFF078B0880FFFFFFFFFFFFFFFF078B0880FFFFFFFFFFFFFFFF078B0880F
+          FFFFFFFFFFFFFFF078B0880FFFFFFFFFFFFFFFF078B0880FFFFFFFFFFFFFFFF0
+          78B0880FFFFFFFFFFFFFFFF078B0880FFFFFFFFFFFFFFFF078B0880FFFFFFFFF
+          FF00000078B0880FFFFFFFFFFF0FF88088B0880FFFFFFFFFFF0F880888B0880F
+          FFFFFFFFFF08808888B0880FFFFFFFFFFF08088888B088000000000000008888
+          88B08888888888888888888888B08888888888888888888888B0}
+        OnClick = Z2dbgHijoClick
+      end
+    end
+    object Panel3: TPanel
+      Left = 2
+      Top = 2
+      Width = 793
+      Height = 20
+      Align = alTop
+      BevelInner = bvLowered
+      BevelOuter = bvNone
+      Caption = 'Cabecera Din'#225'mica Detalle'
+      Color = clHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+    end
+    object Panel4: TPanel
+      Left = 2
+      Top = 207
+      Width = 793
+      Height = 29
+      Align = alBottom
+      BevelOuter = bvNone
+      Color = 12904163
+      TabOrder = 2
+      object Z2bbtnRegHijo: TBitBtn
+        Left = 661
+        Top = 0
+        Width = 28
+        Height = 28
+        Hint = 'Modifica Datos de Cabecera'
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 0
+        TabStop = False
+        OnClick = Z2bbtnRegHijoClick
+        Glyph.Data = {
+          9A050000424D9A05000000000000360000002800000014000000170000000100
+          1800000000006405000000000000000000000000000000000000C0C0C0C0C0C0
+          C0C0C0C0C0C0C0C0C0C0C0C0000000FF0000FF0000FF0000FF0000FF0000FF00
+          00FF0000FF0000FF0000000000C0C0C0C0C0C0C0C0C0C0C0C000000000000000
+          0000000000000000000000FF0000000000FF0000FF0000FF0000FF0000FF0000
+          FF0000FF0000000000000000000000000000C0C0C0000000FFFFFFFFFFFFFFFF
+          FFCCCCCC00000000000000000000000000000000000000000000000000000000
+          0000000000FFFFFFFFFFFF000000C0C0C0000000FFFFFFFFFFFFFFFFFFFFFFFF
+          000000000000CCCCCCCCCCCCCCCCCCCCCCCC999999CCCCCC9999990000000000
+          00FFFFFFFFFFFF000000C0C0C0000000FFFFFFFFFFFFFFFFFF000000CCCCCCFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFF666666999999CCCCCC999999000000FFFFFF
+          FFFFFF000000C0C0C0000000FFFFFFFFFFFFCCCCCC000000FFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFCCCCCC999999666666CCCCCC666666000000FFFFFFFFFFFF00
+          0000C0C0C0000000FFFFFFFFFFFF999999999999FFFFFFFFFFFFFFFFFFFFFFFF
+          CCCCCC666666000000666666CCCCCC999999000000FFFFFFFFFFFF000000C0C0
+          C0000000FFFFFFFFFFFF000000CCCCCCFFFFFFFFFFFFFFFFFFFFFFFF00000099
+          9999000000999999000000000000000000FFFFFFFFFFFF000000C0C0C0000000
+          FFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFCCCCCC0000000000000000
+          00000000666666CCCCCC000000000000FFFFFF000000C0C0C0000000FFFFFFFF
+          FFFF000000FFFFFFCCCCCCFFFFFFFFFFFF999999000000000000666666CCCCCC
+          000000CCCCCC666666000000FFFFFF000000C0C0C0000000FFFFFFFFFFFF0000
+          00FFFFFFCCCCCCFFFFFFFFFFFF666666000000999999000000CCCCCC00000066
+          6666CCCCCC000000FFFFFF000000C0C0C0000000FFFFFFFFFFFF000000FFFFFF
+          CCCCCCFFFFFFFFFFFF999999000000CCCCCC000000666666CCCCCC0000000000
+          00FFFFFFFFFFFF000000C0C0C0000000FFFFFFFFFFFF000000FFFFFFCCCCCC66
+          6666FFFFFFFFFFFF000000666666CCCCCC000000FFFFFF000000FFFFFFFFFFFF
+          FFFFFF000000C0C0C0000000FFFFFFFFFFFF000000FFFFFFCCCCCC0000009999
+          99FFFFFF000000000000FFFFFF000000000000FFFFFFFFFFFFFFFFFFFFFFFF00
+          0000C0C0C0000000FFFFFFFFFFFF000000FFFFFFCCCCCC000000000000FFFFFF
+          666666000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000C0C0
+          C0000000FFFFFFFFFFFF000000FFFFFFCCCCCC000000000000FFFFFFCCCCCC00
+          0000FFFFFF999999FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000C0C0C0000000
+          FFFFFFFFFFFF000000FFFFFFCCCCCC000000000000FFFFFFCCCCCC000000FFFF
+          FFFFFFFF000000000000000000000000000000000000C0C0C0000000FFFFFFFF
+          FFFF000000FFFFFFCCCCCC000000FFFFFF000000000000FFFFFFFFFFFFFFFFFF
+          000000FFFFFFFFFFFFFFFFFF000000C0C0C0C0C0C0000000FFFFFFFFFFFF0000
+          00FFFFFFCCCCCC000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FF
+          FFFFFFFFFF000000C0C0C0C0C0C0C0C0C0000000FFFFFFFFFFFF000000FFFFFF
+          666666000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFF0000
+          00C0C0C0C0C0C0C0C0C0C0C0C0000000000000000000000000FFFFFF99999900
+          0000000000000000000000000000000000000000000000000000C0C0C0C0C0C0
+          C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0000000999999999999000000C0C0
+          C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0
+          C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0000000000000C0C0C0C0C0C0C0C0C0
+          C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0}
+      end
+      object Z2bbtnGrabaHijo: TBitBtn
+        Left = 700
+        Top = 0
+        Width = 28
+        Height = 28
+        Hint = 'Grabar Registro'
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 1
+        TabStop = False
+        OnClick = Z2bbtnGrabaHijoClick
+        Glyph.Data = {
+          8A010000424D8A01000000000000760000002800000017000000170000000100
+          0400000000001401000000000000000000001000000010000000000000000000
+          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+          3333333333303000077777777777770003300000078888888888880000300000
+          0780088888888800003000000780088888888800003000000780088888888800
+          0030000007888888888888000030000000000000000000000030000000000000
+          0000000000300000FFFFFFFFFFFFFF0000300000FFFFFFFFFFFFFF0000300000
+          FFFFFFFFFFFFFF0000300000FFFFFFFFFFFFFF0000300000FFFFFFFFFFFFFF00
+          00300000FFFFFFFFFFFFFF0000300000FFFFFFFFFFFFFF0000300000FFFFFFFF
+          FFFFFF0000300000FFFFFFFFFFFFFF0000300000FFFFFFFFFFFFFF0000300000
+          FFFFFFFFFFFFFF07703000009999999999999907703000009999999999999900
+          0030300099999999999999000330}
+      end
+    end
+    object Memo1: TMemo
+      Left = 24
+      Top = 64
+      Width = 233
+      Height = 169
+      Lines.Strings = (
+        'Memo1')
+      TabOrder = 3
+      Visible = False
+    end
+  end
+  object pnlDetNieto: TPanel
+    Left = 230
+    Top = 114
+    Width = 530
+    Height = 393
+    BevelInner = bvLowered
+    BevelWidth = 3
+    Color = 12904163
+    TabOrder = 4
+    Visible = False
+    object Label7: TLabel
+      Left = 20
+      Top = 110
+      Width = 63
+      Height = 15
+      Caption = 'Transacci'#243'n'
+    end
+    object Label8: TLabel
+      Left = 20
+      Top = 75
+      Width = 55
+      Height = 15
+      Caption = 'Sub-Grupo'
+    end
+    object Label9: TLabel
+      Left = 20
+      Top = 40
+      Width = 31
+      Height = 15
+      Caption = 'Grupo'
+    end
+    object Label11: TLabel
+      Left = 20
+      Top = 250
+      Width = 81
+      Height = 15
+      Caption = 'Tipo de Moneda'
+    end
+    object lblTMON: TLabel
+      Left = 20
+      Top = 145
+      Width = 96
+      Height = 15
+      Caption = 'Tipo de Inventario'
+    end
+    object lblGrArtID: TLabel
+      Left = 20
+      Top = 180
+      Width = 91
+      Height = 15
+      Caption = 'Linea de Producto'
+    end
+    object Label5: TLabel
+      Left = 20
+      Top = 285
+      Width = 49
+      Height = 15
+      Caption = 'Cta. Debe'
+    end
+    object Label6: TLabel
+      Left = 20
+      Top = 320
+      Width = 54
+      Height = 15
+      Caption = 'Cta. Haber'
+    end
+    object Z2bbtnRegOkN: TBitBtn
+      Left = 425
+      Top = 353
+      Width = 29
+      Height = 28
+      Hint = 'Confirma Actualizaci'#243'n'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 13
+      OnClick = Z2bbtnRegOkNClick
+      Glyph.Data = {
+        DE010000424DDE01000000000000760000002800000024000000120000000100
+        0400000000006801000000000000000000001000000010000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+        3333333333333333333333330000333333333333333333333333F33333333333
+        00003333344333333333333333388F3333333333000033334224333333333333
+        338338F3333333330000333422224333333333333833338F3333333300003342
+        222224333333333383333338F3333333000034222A22224333333338F338F333
+        8F33333300003222A3A2224333333338F3838F338F33333300003A2A333A2224
+        33333338F83338F338F33333000033A33333A222433333338333338F338F3333
+        0000333333333A222433333333333338F338F33300003333333333A222433333
+        333333338F338F33000033333333333A222433333333333338F338F300003333
+        33333333A222433333333333338F338F00003333333333333A22433333333333
+        3338F38F000033333333333333A223333333333333338F830000333333333333
+        333A333333333333333338330000333333333333333333333333333333333333
+        0000}
+      NumGlyphs = 2
+    end
+    object Z2bbtnRegCancN: TBitBtn
+      Left = 475
+      Top = 353
+      Width = 30
+      Height = 28
+      Hint = 'Cancela Actualizaci'#243'n'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 14
+      OnClick = Z2bbtnRegCancNClick
+      Glyph.Data = {
+        DE010000424DDE01000000000000760000002800000024000000120000000100
+        0400000000006801000000000000000000001000000010000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+        333333333333333333333333000033338833333333333333333F333333333333
+        0000333911833333983333333388F333333F3333000033391118333911833333
+        38F38F333F88F33300003339111183911118333338F338F3F8338F3300003333
+        911118111118333338F3338F833338F3000033333911111111833333338F3338
+        3333F8330000333333911111183333333338F333333F83330000333333311111
+        8333333333338F3333383333000033333339111183333333333338F333833333
+        00003333339111118333333333333833338F3333000033333911181118333333
+        33338333338F333300003333911183911183333333383338F338F33300003333
+        9118333911183333338F33838F338F33000033333913333391113333338FF833
+        38F338F300003333333333333919333333388333338FFF830000333333333333
+        3333333333333333333888330000333333333333333333333333333333333333
+        0000}
+      NumGlyphs = 2
+    end
+    object dblcTransacN: TwwDBLookupCombo
+      Left = 135
+      Top = 110
+      Width = 55
+      Height = 23
+      DropDownAlignment = taLeftJustify
+      Selected.Strings = (
+        'TRIID'#9'2'#9'C'#243'digo'#9'F'
+        'TRIDES'#9'40'#9'Descripci'#243'n'#9'F'
+        'TRIABR'#9'15'#9'Abreviatura'#9'F')
+      LookupTable = DMALM.cdsTRAN
+      LookupField = 'TRIID'
+      Options = [loColLines, loTitles]
+      DropDownCount = 15
+      MaxLength = 2
+      TabOrder = 2
+      AutoDropDown = False
+      ShowButton = True
+      PreciseEditRegion = False
+      AllowClearKey = False
+      OnExit = dblcTransacNExit
+    end
+    object dbeTransacN: TwwDBEdit
+      Left = 195
+      Top = 110
+      Width = 300
+      Height = 23
+      CharCase = ecUpperCase
+      Enabled = False
+      TabOrder = 3
+      UnboundDataType = wwDefault
+      WantReturns = False
+      WordWrap = False
+    end
+    object dbeSGrupoN: TwwDBEdit
+      Left = 135
+      Top = 75
+      Width = 55
+      Height = 23
+      TabOrder = 1
+      UnboundDataType = wwDefault
+      WantReturns = False
+      WordWrap = False
+    end
+    object dbeGrupoN: TwwDBEdit
+      Left = 135
+      Top = 40
+      Width = 55
+      Height = 23
+      TabOrder = 0
+      UnboundDataType = wwDefault
+      WantReturns = False
+      WordWrap = False
+    end
+    object dblcTMonedaN: TwwDBLookupCombo
+      Left = 135
+      Top = 250
+      Width = 55
+      Height = 23
+      DropDownAlignment = taLeftJustify
+      Selected.Strings = (
+        'TMONID'#9'3'#9'ID'#9'F'
+        'TMONDES'#9'30'#9'Descripci'#243'n'#9'F'
+        'TMONABR'#9'8'#9'Abreviatura'#9'F')
+      LookupTable = DMALM.cdsTMoneda
+      LookupField = 'TMONID'
+      Options = [loColLines, loTitles]
+      TabOrder = 9
+      AutoDropDown = True
+      ShowButton = True
+      PreciseEditRegion = False
+      AllowClearKey = False
+      OnExit = dblcTMonedaNExit
+    end
+    object dbeTMonedaN: TwwDBEdit
+      Left = 195
+      Top = 250
+      Width = 300
+      Height = 23
+      CharCase = ecUpperCase
+      Enabled = False
+      ReadOnly = True
+      TabOrder = 10
+      UnboundDataType = wwDefault
+      WantReturns = False
+      WordWrap = False
+    end
+    object chkICorpN: TCheckBox
+      Left = 20
+      Top = 215
+      Width = 130
+      Height = 17
+      Alignment = taLeftJustify
+      Caption = 'Indica Corporativa'
+      TabOrder = 8
+    end
+    object Panel5: TPanel
+      Left = 6
+      Top = 6
+      Width = 518
+      Height = 20
+      Align = alTop
+      BevelInner = bvLowered
+      BevelOuter = bvNone
+      Caption = 'Detalle de Grupos Din'#225'mica Contable'
+      Color = clHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 15
+    end
+    object dblcTINID: TwwDBLookupCombo
+      Left = 135
+      Top = 145
+      Width = 55
+      Height = 23
+      DropDownAlignment = taLeftJustify
+      Selected.Strings = (
+        'TINID'#9'2'#9'ID'#9'F'
+        'TINDES'#9'40'#9'Descripci'#243'n'#9'F')
+      LookupTable = DMALM.cdsTINID
+      LookupField = 'TINID'
+      Options = [loColLines, loTitles]
+      DropDownCount = 15
+      TabOrder = 4
+      AutoDropDown = False
+      ShowButton = True
+      PreciseEditRegion = False
+      AllowClearKey = False
+      OnExit = dblcTINIDExit
+    end
+    object dbeTINID: TwwDBEdit
+      Left = 195
+      Top = 145
+      Width = 300
+      Height = 23
+      CharCase = ecUpperCase
+      Enabled = False
+      ReadOnly = True
+      TabOrder = 5
+      UnboundDataType = wwDefault
+      WantReturns = False
+      WordWrap = False
+    end
+    object dbeGrpArti: TwwDBEdit
+      Left = 195
+      Top = 180
+      Width = 300
+      Height = 23
+      CharCase = ecUpperCase
+      Enabled = False
+      ReadOnly = True
+      TabOrder = 7
+      UnboundDataType = wwDefault
+      WantReturns = False
+      WordWrap = False
+    end
+    object dbeCtaDebe: TwwDBEdit
+      Left = 135
+      Top = 285
+      Width = 100
+      Height = 23
+      Enabled = False
+      TabOrder = 11
+      UnboundDataType = wwDefault
+      WantReturns = False
+      WordWrap = False
+      OnExit = dbeCtaDebeExit
+    end
+    object dbeCtaHaber: TwwDBEdit
+      Left = 135
+      Top = 320
+      Width = 100
+      Height = 23
+      Enabled = False
+      TabOrder = 12
+      UnboundDataType = wwDefault
+      WantReturns = False
+      WordWrap = False
+      OnExit = dbeCtaHaberExit
+    end
+    object dblcGrpArti: TwwDBLookupComboDlg
+      Left = 135
+      Top = 181
+      Width = 55
+      Height = 23
+      GridOptions = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgPerfectRowFit]
+      GridColor = clWhite
+      GridTitleAlignment = taCenter
+      Caption = 'Linea de Producto'
+      MaxWidth = 0
+      MaxHeight = 209
+      Selected.Strings = (
+        'GRARID'#9'8'#9'Linea'#9'F'
+        'GRARDES'#9'40'#9'Linea'#9'F')
+      LookupTable = DMALM.cdsGArti
+      LookupField = 'GRARID'
+      TabOrder = 6
+      AutoDropDown = False
+      ShowButton = True
+      AllowClearKey = False
+      OnDropDown = dblcGrpArtiDropDown
+      OnExit = dblcGrpArtiExit
+    end
+    object dbeDesCtaDebe: TEdit
+      Left = 247
+      Top = 285
+      Width = 250
+      Height = 23
+      Enabled = False
+      TabOrder = 16
+    end
+    object dbeDesCtaHaber: TEdit
+      Left = 247
+      Top = 320
+      Width = 250
+      Height = 23
+      Enabled = False
+      TabOrder = 17
+    end
+  end
+  object pnlDetHijo: TPanel
+    Left = 279
+    Top = 41
+    Width = 527
+    Height = 403
+    BevelInner = bvLowered
+    BevelWidth = 3
+    Color = 12904163
+    TabOrder = 3
+    Visible = False
+    object lblTransacc: TLabel
+      Left = 20
+      Top = 110
+      Width = 63
+      Height = 15
+      Caption = 'Transacci'#243'n'
+    end
+    object lblPRESEN: TLabel
+      Left = 20
+      Top = 75
+      Width = 55
+      Height = 15
+      Caption = 'Sub-Grupo'
+    end
+    object Label3: TLabel
+      Left = 20
+      Top = 40
+      Width = 31
+      Height = 15
+      Caption = 'Grupo'
+    end
+    object Label4: TLabel
+      Left = 20
+      Top = 180
+      Width = 62
+      Height = 15
+      Caption = 'Descripci'#243'n'
+    end
+    object lblTMONEDA: TLabel
+      Left = 20
+      Top = 250
+      Width = 81
+      Height = 15
+      Caption = 'Tipo de Moneda'
+    end
+    object Label10: TLabel
+      Left = 20
+      Top = 145
+      Width = 96
+      Height = 15
+      Caption = 'Tipo de Inventario'
+    end
+    object Label12: TLabel
+      Left = 20
+      Top = 285
+      Width = 49
+      Height = 15
+      Caption = 'Cta. Debe'
+    end
+    object Label13: TLabel
+      Left = 20
+      Top = 320
+      Width = 54
+      Height = 15
+      Caption = 'Cta. Haber'
+    end
+    object Z2bbtnRegOk: TBitBtn
+      Left = 425
+      Top = 358
+      Width = 29
+      Height = 28
+      Hint = 'Confirma Actualizaci'#243'n'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 14
+      OnClick = Z2bbtnRegOkClick
+      Glyph.Data = {
+        DE010000424DDE01000000000000760000002800000024000000120000000100
+        0400000000006801000000000000000000001000000010000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+        3333333333333333333333330000333333333333333333333333F33333333333
+        00003333344333333333333333388F3333333333000033334224333333333333
+        338338F3333333330000333422224333333333333833338F3333333300003342
+        222224333333333383333338F3333333000034222A22224333333338F338F333
+        8F33333300003222A3A2224333333338F3838F338F33333300003A2A333A2224
+        33333338F83338F338F33333000033A33333A222433333338333338F338F3333
+        0000333333333A222433333333333338F338F33300003333333333A222433333
+        333333338F338F33000033333333333A222433333333333338F338F300003333
+        33333333A222433333333333338F338F00003333333333333A22433333333333
+        3338F38F000033333333333333A223333333333333338F830000333333333333
+        333A333333333333333338330000333333333333333333333333333333333333
+        0000}
+      NumGlyphs = 2
+    end
+    object Z2bbtnRegCanc: TBitBtn
+      Left = 475
+      Top = 358
+      Width = 30
+      Height = 28
+      Hint = 'Cancela Actualizaci'#243'n'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 15
+      OnClick = Z2bbtnRegCancClick
+      Glyph.Data = {
+        DE010000424DDE01000000000000760000002800000024000000120000000100
+        0400000000006801000000000000000000001000000010000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+        333333333333333333333333000033338833333333333333333F333333333333
+        0000333911833333983333333388F333333F3333000033391118333911833333
+        38F38F333F88F33300003339111183911118333338F338F3F8338F3300003333
+        911118111118333338F3338F833338F3000033333911111111833333338F3338
+        3333F8330000333333911111183333333338F333333F83330000333333311111
+        8333333333338F3333383333000033333339111183333333333338F333833333
+        00003333339111118333333333333833338F3333000033333911181118333333
+        33338333338F333300003333911183911183333333383338F338F33300003333
+        9118333911183333338F33838F338F33000033333913333391113333338FF833
+        38F338F300003333333333333919333333388333338FFF830000333333333333
+        3333333333333333333888330000333333333333333333333333333333333333
+        0000}
+      NumGlyphs = 2
+    end
+    object dblcTransac: TwwDBLookupCombo
+      Left = 135
+      Top = 110
+      Width = 55
+      Height = 23
+      DropDownAlignment = taLeftJustify
+      Selected.Strings = (
+        'TRIID'#9'2'#9'C'#243'digo'#9'F'
+        'TRIDES'#9'40'#9'Descripci'#243'n'#9'F'
+        'TRIABR'#9'15'#9'Abreviatura'#9'F')
+      LookupTable = DMALM.cdsTRAN
+      LookupField = 'TRIID'
+      Options = [loColLines, loTitles]
+      DropDownCount = 15
+      MaxLength = 2
+      TabOrder = 2
+      AutoDropDown = False
+      ShowButton = True
+      PreciseEditRegion = False
+      AllowClearKey = False
+      OnExit = dblcTransacExit
+    end
+    object dbeTransac: TwwDBEdit
+      Left = 195
+      Top = 110
+      Width = 300
+      Height = 23
+      CharCase = ecUpperCase
+      Enabled = False
+      TabOrder = 3
+      UnboundDataType = wwDefault
+      WantReturns = False
+      WordWrap = False
+    end
+    object dbeSGrupo: TwwDBEdit
+      Left = 135
+      Top = 75
+      Width = 55
+      Height = 23
+      TabOrder = 1
+      UnboundDataType = wwDefault
+      WantReturns = False
+      WordWrap = False
+    end
+    object dbeGrupo: TwwDBEdit
+      Left = 135
+      Top = 40
+      Width = 55
+      Height = 23
+      TabOrder = 0
+      UnboundDataType = wwDefault
+      WantReturns = False
+      WordWrap = False
+    end
+    object dbeDescrip: TwwDBEdit
+      Left = 135
+      Top = 180
+      Width = 300
+      Height = 23
+      TabOrder = 6
+      UnboundDataType = wwDefault
+      WantReturns = False
+      WordWrap = False
+    end
+    object dblcTMoneda: TwwDBLookupCombo
+      Left = 135
+      Top = 250
+      Width = 55
+      Height = 23
+      DropDownAlignment = taLeftJustify
+      Selected.Strings = (
+        'TMONID'#9'3'#9'ID'#9'F'
+        'TMONDES'#9'30'#9'Descripci'#243'n'#9'F'
+        'TMONABR'#9'8'#9'Abreviatura'#9'F')
+      LookupTable = DMALM.cdsTMoneda
+      LookupField = 'TMONID'
+      Options = [loColLines, loTitles]
+      TabOrder = 8
+      AutoDropDown = True
+      ShowButton = True
+      PreciseEditRegion = False
+      AllowClearKey = False
+      OnExit = dblcTMonedaExit
+    end
+    object dbeTMoneda: TwwDBEdit
+      Left = 195
+      Top = 250
+      Width = 300
+      Height = 23
+      CharCase = ecUpperCase
+      Enabled = False
+      ReadOnly = True
+      TabOrder = 9
+      UnboundDataType = wwDefault
+      WantReturns = False
+      WordWrap = False
+    end
+    object chkICorp: TCheckBox
+      Left = 20
+      Top = 215
+      Width = 130
+      Height = 17
+      Alignment = taLeftJustify
+      Caption = 'Indica Corporativa'
+      TabOrder = 7
+    end
+    object Panel1: TPanel
+      Left = 6
+      Top = 6
+      Width = 515
+      Height = 20
+      Align = alTop
+      BevelInner = bvLowered
+      BevelOuter = bvNone
+      Caption = 'Grupos del Asiento Dinamica Contable'
+      Color = clHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 16
+    end
+    object dblcTINIDN: TwwDBLookupCombo
+      Left = 135
+      Top = 145
+      Width = 55
+      Height = 23
+      DropDownAlignment = taLeftJustify
+      Selected.Strings = (
+        'TINID'#9'2'#9'ID'#9'F'
+        'TINDES'#9'40'#9'Descripci'#243'n'#9'F')
+      LookupTable = DMALM.cdsTINID
+      LookupField = 'TINID'
+      Options = [loColLines, loTitles]
+      DropDownCount = 15
+      TabOrder = 4
+      AutoDropDown = False
+      ShowButton = True
+      PreciseEditRegion = False
+      AllowClearKey = False
+      OnExit = dblcTINIDNExit
+    end
+    object dbeTINIDN: TwwDBEdit
+      Left = 195
+      Top = 145
+      Width = 300
+      Height = 23
+      CharCase = ecUpperCase
+      Enabled = False
+      ReadOnly = True
+      TabOrder = 5
+      UnboundDataType = wwDefault
+      WantReturns = False
+      WordWrap = False
+    end
+    object dbeDesCtaDebeCab: TEdit
+      Left = 245
+      Top = 285
+      Width = 250
+      Height = 23
+      Enabled = False
+      TabOrder = 11
+    end
+    object dbeDesCtaHaberCab: TEdit
+      Left = 245
+      Top = 320
+      Width = 250
+      Height = 23
+      Enabled = False
+      TabOrder = 13
+    end
+    object dbeCtaDebeCab: TwwDBLookupComboDlg
+      Left = 135
+      Top = 285
+      Width = 105
+      Height = 23
+      GridOptions = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgWordWrap, dgPerfectRowFit]
+      GridColor = clWhite
+      GridTitleAlignment = taCenter
+      Caption = 'Cuenta Debe'
+      MaxWidth = 0
+      MaxHeight = 209
+      SearchDelay = 2
+      Selected.Strings = (
+        'CUENTAID'#9'20'#9'Cuenta'#9'F'
+        'CTADES'#9'40'#9'Descripci'#243'n'#9'F')
+      LookupTable = DMALM.cdsNia
+      LookupField = 'CUENTAID'
+      TabOrder = 10
+      AutoDropDown = False
+      ShowButton = True
+      AllowClearKey = False
+      OnExit = dbeCtaDebeCabExit
+    end
+    object dbeCtaHaberCab: TwwDBLookupComboDlg
+      Left = 135
+      Top = 320
+      Width = 105
+      Height = 23
+      GridOptions = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgWordWrap, dgPerfectRowFit]
+      GridColor = clWhite
+      GridTitleAlignment = taCenter
+      Caption = 'Cuenta Haber'
+      MaxWidth = 0
+      MaxHeight = 209
+      Selected.Strings = (
+        'CUENTAID'#9'20'#9'Cuenta'#9'F'
+        'CTADES'#9'40'#9'Descripci'#243'n'#9'F')
+      LookupTable = DMALM.cdsNIS
+      LookupField = 'CUENTAID'
+      TabOrder = 12
+      AutoDropDown = False
+      ShowButton = True
+      AllowClearKey = False
+      OnExit = dbeCtaHaberCabExit
+    end
+  end
+  object BitBtn1: TBitBtn
+    Left = 749
+    Top = 546
+    Width = 19
+    Height = 19
+    Hint = 'Salir'
+    Caption = '&S'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clRed
+    Font.Height = -19
+    Font.Name = 'Garamond'
+    Font.Style = [fsBold, fsItalic]
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 6
+    TabStop = False
+    OnClick = Z2bbtnSalirClick
+    NumGlyphs = 2
+  end
+  object Z2bbtnSalir: TBitBtn
+    Left = 748
+    Top = 545
+    Width = 28
+    Height = 28
+    Hint = 'Salir'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clRed
+    Font.Height = -19
+    Font.Name = 'Garamond'
+    Font.Style = [fsBold, fsItalic]
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 5
+    TabStop = False
+    OnClick = Z2bbtnSalirClick
+    Glyph.Data = {
+      DE010000424DDE01000000000000760000002800000024000000120000000100
+      0400000000006801000000000000000000001000000000000000000000000000
+      80000080000000808000800000008000800080800000C0C0C000808080000000
+      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00388888888877
+      F7F787F8888888888333333F00004444400888FFF444448888888888F333FF8F
+      000033334D5007FFF4333388888888883338888F0000333345D50FFFF4333333
+      338F888F3338F33F000033334D5D0FFFF43333333388788F3338F33F00003333
+      45D50FEFE4333333338F878F3338F33F000033334D5D0FFFF43333333388788F
+      3338F33F0000333345D50FEFE4333333338F878F3338F33F000033334D5D0FFF
+      F43333333388788F3338F33F0000333345D50FEFE4333333338F878F3338F33F
+      000033334D5D0EFEF43333333388788F3338F33F0000333345D50FEFE4333333
+      338F878F3338F33F000033334D5D0EFEF43333333388788F3338F33F00003333
+      4444444444333333338F8F8FFFF8F33F00003333333333333333333333888888
+      8888333F00003333330000003333333333333FFFFFF3333F00003333330AAAA0
+      333333333333888888F3333F00003333330000003333333333338FFFF8F3333F
+      0000}
+    NumGlyphs = 2
+  end
+  object ppReporte: TppReport
+    AutoStop = False
+    DataPipeline = ppData
+    PrinterSetup.BinName = 'Default'
+    PrinterSetup.DocumentName = 'Report'
+    PrinterSetup.PaperName = 'Carta'
+    PrinterSetup.PrinterName = 'Default'
+    PrinterSetup.mmMarginBottom = 6350
+    PrinterSetup.mmMarginLeft = 6350
+    PrinterSetup.mmMarginRight = 6350
+    PrinterSetup.mmMarginTop = 6350
+    PrinterSetup.mmPaperHeight = 279401
+    PrinterSetup.mmPaperWidth = 215900
+    PrinterSetup.PaperSize = 1
+    Template.FileName = 'C:\SOLExes\SOLFormatos\Alm\Incoresa\DinamicaCtbl.rtm'
+    AllowPrintToArchive = True
+    AllowPrintToFile = True
+    DeviceType = 'Screen'
+    OnPreviewFormCreate = ppReportePreviewFormCreate
+    OutlineSettings.CreateNode = True
+    OutlineSettings.CreatePageNodes = True
+    OutlineSettings.Enabled = False
+    OutlineSettings.Visible = False
+    TextSearchSettings.DefaultString = '<FindText>'
+    TextSearchSettings.Enabled = False
+    Left = 274
+    Top = 536
+    Version = '7.02'
+    mmColumnWidth = 0
+    DataPipelineName = 'ppData'
+    object ppHeaderBand1: TppHeaderBand
+      mmBottomOffset = 0
+      mmHeight = 13229
+      mmPrintPosition = 0
+      object ppLabel1: TppLabel
+        UserName = 'Label1'
+        Caption = 'Label1'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = []
+        Transparent = True
+        mmHeight = 4233
+        mmLeft = 7673
+        mmTop = 6350
+        mmWidth = 10054
+        BandType = 0
+      end
+    end
+    object ppDetailBand1: TppDetailBand
+      mmBottomOffset = 0
+      mmHeight = 13229
+      mmPrintPosition = 0
+      object ppDBText1: TppDBText
+        UserName = 'DBText1'
+        DataPipeline = ppData
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = []
+        Transparent = True
+        DataPipelineName = 'ppData'
+        mmHeight = 4233
+        mmLeft = 7408
+        mmTop = 1852
+        mmWidth = 17198
+        BandType = 4
+      end
+    end
+    object ppFooterBand1: TppFooterBand
+      mmBottomOffset = 0
+      mmHeight = 13229
+      mmPrintPosition = 0
+    end
+  end
+  object ppData: TppDBPipeline
+    UserName = 'Data'
+    Left = 223
+    Top = 533
+  end
+  object Diseno: TppDesigner
+    Caption = 'Reporte'
+    DataSettings.SessionType = 'BDESession'
+    DataSettings.AllowEditSQL = False
+    DataSettings.CollationType = ctASCII
+    DataSettings.DatabaseType = dtParadox
+    DataSettings.IsCaseSensitive = True
+    DataSettings.SQLType = sqBDELocal
+    Position = poScreenCenter
+    IniStorageType = 'IniFile'
+    IniStorageName = '($WINSYS)\RBuilder.ini'
+    WindowHeight = 400
+    WindowLeft = 100
+    WindowTop = 50
+    WindowWidth = 600
+    Left = 346
+    Top = 536
+  end
+  object pprPreview: TppReport
+    AutoStop = False
+    DataPipeline = ppData
+    PrinterSetup.BinName = 'Default'
+    PrinterSetup.DocumentName = 'rPreview'
+    PrinterSetup.PaperName = '8K'
+    PrinterSetup.PrinterName = 'Default'
+    PrinterSetup.mmMarginBottom = 6350
+    PrinterSetup.mmMarginLeft = 6350
+    PrinterSetup.mmMarginRight = 6350
+    PrinterSetup.mmMarginTop = 6350
+    PrinterSetup.mmPaperHeight = 280000
+    PrinterSetup.mmPaperWidth = 225000
+    PrinterSetup.PaperSize = 122
+    Template.FileName = 'C:\SOLExes\SOLFormatos\Alm\Incoresa\AlmVoucher.rtm'
+    Units = utMillimeters
+    DeviceType = 'Screen'
+    OnPreviewFormCreate = pprPreviewPreviewFormCreate
+    OutlineSettings.CreateNode = True
+    OutlineSettings.CreatePageNodes = True
+    OutlineSettings.Enabled = False
+    OutlineSettings.Visible = False
+    TextSearchSettings.DefaultString = '<FindText>'
+    TextSearchSettings.Enabled = False
+    Left = 530
+    Top = 536
+    Version = '7.02'
+    mmColumnWidth = 0
+    DataPipelineName = 'ppData'
+    object ppHeaderBand2: TppHeaderBand
+      mmBottomOffset = 0
+      mmHeight = 57150
+      mmPrintPosition = 0
+      object pplblCiades: TppLabel
+        UserName = 'lblCiades'
+        Caption = 'Nombre de la compa'#241'ia'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 13494
+        mmTop = 1323
+        mmWidth = 32279
+        BandType = 0
+      end
+      object ppSystemVariable3: TppSystemVariable
+        UserName = 'SystemVariable3'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 162190
+        mmTop = 1323
+        mmWidth = 14288
+        BandType = 0
+      end
+      object ppLabel3: TppLabel
+        UserName = 'Label2'
+        Caption = 'Almacen'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 6350
+        mmTop = 5821
+        mmWidth = 12171
+        BandType = 0
+      end
+      object ppLabel4: TppLabel
+        UserName = 'Label3'
+        Caption = 'Periodo'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 75671
+        mmTop = 11113
+        mmWidth = 10583
+        BandType = 0
+      end
+      object ppLabel6: TppLabel
+        UserName = 'Label6'
+        Caption = 'No.Comprobante'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 102923
+        mmTop = 22225
+        mmWidth = 23283
+        BandType = 0
+      end
+      object pplblTDiario: TppLabel
+        UserName = 'lblTDiario'
+        Caption = 'lblTDiario'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 6350
+        mmTop = 26988
+        mmWidth = 12700
+        BandType = 0
+      end
+      object pplblDiarioDes: TppLabel
+        UserName = 'lblDiarioDes'
+        AutoSize = False
+        Caption = 'este es el diari'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 14817
+        mmTop = 26988
+        mmWidth = 59531
+        BandType = 0
+      end
+      object ppLabel9: TppLabel
+        UserName = 'Label9'
+        Caption = 'lblAnoMes'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 75671
+        mmTop = 15875
+        mmWidth = 13229
+        BandType = 0
+      end
+      object pplblNoCompro: TppLabel
+        UserName = 'lblNoCompro'
+        Caption = 'lblNoCompro'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 102923
+        mmTop = 26988
+        mmWidth = 16669
+        BandType = 0
+      end
+      object ppLabel15: TppLabel
+        UserName = 'Label15'
+        Caption = 'Nombre:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 6350
+        mmTop = 34131
+        mmWidth = 10583
+        BandType = 0
+      end
+      object pplblProveedor: TppLabel
+        UserName = 'lblProveedor'
+        AutoSize = False
+        Caption = 'lblProveedor'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 23283
+        mmTop = 34131
+        mmWidth = 107950
+        BandType = 0
+      end
+      object ppLabel43: TppLabel
+        UserName = 'Label43'
+        Caption = 'Moneda  :'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 135996
+        mmTop = 39158
+        mmWidth = 12171
+        BandType = 0
+      end
+      object ppLabel47: TppLabel
+        UserName = 'Label47'
+        AutoSize = False
+        Caption = 'lblMonedaDes'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 153459
+        mmTop = 39158
+        mmWidth = 25929
+        BandType = 0
+      end
+      object ppLabel48: TppLabel
+        UserName = 'Label48'
+        Caption = 'Glosa :'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 6350
+        mmTop = 44450
+        mmWidth = 8202
+        BandType = 0
+      end
+      object pplblGlosaDes: TppLabel
+        UserName = 'lblGlosaDes'
+        Caption = 'lblGlosa'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 23283
+        mmTop = 44450
+        mmWidth = 11642
+        BandType = 0
+      end
+      object ppLabel50: TppLabel
+        UserName = 'Label50'
+        Caption = 'SER.'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 10583
+        mmTop = 50536
+        mmWidth = 5821
+        BandType = 0
+      end
+      object ppLabel51: TppLabel
+        UserName = 'Label51'
+        Caption = 'NO.DOC.'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 16933
+        mmTop = 50536
+        mmWidth = 11906
+        BandType = 0
+      end
+      object ppLabel52: TppLabel
+        UserName = 'Label52'
+        Caption = 'F.Emisi'#243'n'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 75671
+        mmTop = 22225
+        mmWidth = 13494
+        BandType = 0
+      end
+      object ppLabel53: TppLabel
+        UserName = 'Label53'
+        AutoSize = False
+        Caption = ' CUENTA'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 28046
+        mmTop = 50536
+        mmWidth = 16140
+        BandType = 0
+      end
+      object ppLabel54: TppLabel
+        UserName = 'Label54'
+        Caption = 'DESCRIPCION'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 75142
+        mmTop = 50536
+        mmWidth = 19050
+        BandType = 0
+      end
+      object ppLabel55: TppLabel
+        UserName = 'Label55'
+        Caption = 'C'#243'd.Prov'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 6350
+        mmTop = 39158
+        mmWidth = 11642
+        BandType = 0
+      end
+      object ppLabel56: TppLabel
+        UserName = 'Label56'
+        Caption = 'C.CTO.'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 112713
+        mmTop = 50536
+        mmWidth = 9525
+        BandType = 0
+      end
+      object ppLabel57: TppLabel
+        UserName = 'Label57'
+        Caption = 'T.C.'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        Visible = False
+        mmHeight = 3704
+        mmLeft = 98690
+        mmTop = 39952
+        mmWidth = 5556
+        BandType = 0
+      end
+      object ppLabel58: TppLabel
+        UserName = 'Label58'
+        Caption = 'US$'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        TextAlignment = taRightJustified
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 132292
+        mmTop = 50536
+        mmWidth = 5027
+        BandType = 0
+      end
+      object ppLabel59: TppLabel
+        UserName = 'Label59'
+        Caption = 'DEBE (S/.)'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 143140
+        mmTop = 50536
+        mmWidth = 13494
+        BandType = 0
+      end
+      object ppLabel60: TppLabel
+        UserName = 'Label60'
+        Caption = 'HABER (S/.)'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 161132
+        mmTop = 50536
+        mmWidth = 15610
+        BandType = 0
+      end
+      object pplblCodProv: TppLabel
+        UserName = 'lblCodProv'
+        Caption = 'Label27'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 23283
+        mmTop = 39158
+        mmWidth = 10848
+        BandType = 0
+      end
+      object pplblTipoCamb: TppDBText
+        UserName = 'lblTipoCamb'
+        DataField = 'CNTTCAMBIO'
+        DisplayFormat = '###,##0.000'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        ParentDataPipeline = False
+        Transparent = True
+        Visible = False
+        mmHeight = 3704
+        mmLeft = 104775
+        mmTop = 39952
+        mmWidth = 7938
+        BandType = 0
+      end
+      object ppLabel62: TppLabel
+        UserName = 'Label62'
+        Caption = 'F.Comprobante'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 102923
+        mmTop = 11113
+        mmWidth = 21167
+        BandType = 0
+      end
+      object ppDBText15: TppDBText
+        UserName = 'DBText15'
+        DataField = 'CIAID'
+        DataPipeline = ppData
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        ParentDataPipeline = False
+        Transparent = True
+        DataPipelineName = 'ppData'
+        mmHeight = 3440
+        mmLeft = 6350
+        mmTop = 1323
+        mmWidth = 7144
+        BandType = 0
+      end
+      object ppLabel63: TppLabel
+        UserName = 'Label63'
+        Caption = 'lblFecEmision'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 75671
+        mmTop = 26988
+        mmWidth = 17198
+        BandType = 0
+      end
+      object ppDBText16: TppDBText
+        UserName = 'DBText16'
+        DataField = 'CNTFCOMP'
+        DataPipeline = ppData
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        ParentDataPipeline = False
+        Transparent = True
+        DataPipelineName = 'ppData'
+        mmHeight = 3704
+        mmLeft = 102923
+        mmTop = 16140
+        mmWidth = 17198
+        BandType = 0
+      end
+      object ppLabel64: TppLabel
+        UserName = 'Label301'
+        Caption = 'Estado  :'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 135996
+        mmTop = 44450
+        mmWidth = 10583
+        BandType = 0
+      end
+      object pplblDesEstado: TppLabel
+        UserName = 'lblDesEstado1'
+        AutoSize = False
+        Caption = 'Label25'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 153459
+        mmTop = 44450
+        mmWidth = 17463
+        BandType = 0
+      end
+      object ppLabel66: TppLabel
+        UserName = 'Label66'
+        Caption = 'Impresi'#243'n de Comprobante'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 76200
+        mmTop = 1323
+        mmWidth = 37571
+        BandType = 0
+      end
+      object ppLabel67: TppLabel
+        UserName = 'Label67'
+        Caption = 'Fecha :'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 147109
+        mmTop = 1323
+        mmWidth = 9790
+        BandType = 0
+      end
+      object ppLabel68: TppLabel
+        UserName = 'Label68'
+        Caption = 
+          '----------------------------------------------------------------' +
+          '----------------------------------------------------------------' +
+          '--------------------------------'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 6350
+        mmTop = 29898
+        mmWidth = 169334
+        BandType = 0
+      end
+      object ppLabel69: TppLabel
+        UserName = 'Label69'
+        Caption = 
+          '----------------------------------------------------------------' +
+          '----------------------------------------------------------------' +
+          '--------------------------------'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 6350
+        mmTop = 47361
+        mmWidth = 169334
+        BandType = 0
+      end
+      object ppLabel70: TppLabel
+        UserName = 'Label70'
+        Caption = 
+          '----------------------------------------------------------------' +
+          '----------------------------------------------------------------' +
+          '--------------------------------'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 6350
+        mmTop = 53446
+        mmWidth = 169334
+        BandType = 0
+      end
+      object ppLabel71: TppLabel
+        UserName = 'Label71'
+        Caption = 'It.'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 6350
+        mmTop = 50536
+        mmWidth = 2910
+        BandType = 0
+      end
+      object ppLabel72: TppLabel
+        UserName = 'Label72'
+        AutoSize = False
+        Caption = 'FECHA'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 45508
+        mmTop = 50536
+        mmWidth = 17463
+        BandType = 0
+      end
+      object ppLabel73: TppLabel
+        UserName = 'Label73'
+        Caption = 'Importe'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        TextAlignment = taRightJustified
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 166159
+        mmTop = 22225
+        mmWidth = 10848
+        BandType = 0
+      end
+      object pplblMontoImporte: TppLabel
+        UserName = 'Label401'
+        Caption = 'Label40'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        TextAlignment = taRightJustified
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 166159
+        mmTop = 26988
+        mmWidth = 10848
+        BandType = 0
+      end
+      object ppLabel75: TppLabel
+        UserName = 'Label75'
+        Caption = 'T.Cambio:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 135996
+        mmTop = 34131
+        mmWidth = 12965
+        BandType = 0
+      end
+      object ppLabel76: TppLabel
+        UserName = 'Label76'
+        Caption = 'Hora :'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 147109
+        mmTop = 5821
+        mmWidth = 8731
+        BandType = 0
+      end
+      object ppSystemVariable4: TppSystemVariable
+        UserName = 'SystemVariable4'
+        VarType = vtTime
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 162190
+        mmTop = 5821
+        mmWidth = 16933
+        BandType = 0
+      end
+      object ppLabel77: TppLabel
+        UserName = 'Label77'
+        AutoSize = False
+        Caption = 'lblTipoCamb'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 155575
+        mmTop = 34131
+        mmWidth = 13229
+        BandType = 0
+      end
+      object ppLabel78: TppLabel
+        UserName = 'Label78'
+        Caption = 'Diario'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 6350
+        mmTop = 22225
+        mmWidth = 8731
+        BandType = 0
+      end
+    end
+    object ppDetailBand2: TppDetailBand
+      mmBottomOffset = 0
+      mmHeight = 5027
+      mmPrintPosition = 0
+      object ppDBText17: TppDBText
+        UserName = 'DBText17'
+        DataField = 'CNTSERIE'
+        DataPipeline = ppData
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        ParentDataPipeline = False
+        Transparent = True
+        DataPipelineName = 'ppData'
+        mmHeight = 3704
+        mmLeft = 10319
+        mmTop = 529
+        mmWidth = 6879
+        BandType = 4
+      end
+      object ppDBText18: TppDBText
+        UserName = 'DBText18'
+        DataField = 'CNTNODOC'
+        DataPipeline = ppData
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        ParentDataPipeline = False
+        Transparent = True
+        DataPipelineName = 'ppData'
+        mmHeight = 3704
+        mmLeft = 17463
+        mmTop = 529
+        mmWidth = 10583
+        BandType = 4
+      end
+      object ppDBText19: TppDBText
+        UserName = 'DBText19'
+        DataField = 'CUENTAID'
+        DataPipeline = ppData
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        DataPipelineName = 'ppData'
+        mmHeight = 3704
+        mmLeft = 28310
+        mmTop = 529
+        mmWidth = 15610
+        BandType = 4
+      end
+      object ppDBText20: TppDBText
+        UserName = 'DBText20'
+        DataField = 'CNTDEBEMN'
+        DataPipeline = ppData
+        DisplayFormat = '###,###,##0.00'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        ParentDataPipeline = False
+        TextAlignment = taRightJustified
+        Transparent = True
+        DataPipelineName = 'ppData'
+        mmHeight = 3704
+        mmLeft = 138377
+        mmTop = 529
+        mmWidth = 18256
+        BandType = 4
+      end
+      object ppDBText21: TppDBText
+        UserName = 'DBText21'
+        DataField = 'CNTHABEMN'
+        DataPipeline = ppData
+        DisplayFormat = '###,###,##0.00'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        ParentDataPipeline = False
+        TextAlignment = taRightJustified
+        Transparent = True
+        DataPipelineName = 'ppData'
+        mmHeight = 3704
+        mmLeft = 158486
+        mmTop = 265
+        mmWidth = 18256
+        BandType = 4
+      end
+      object ppDBText22: TppDBText
+        UserName = 'DBText22'
+        DataField = 'CNTGLOSA'
+        DataPipeline = ppData
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        ParentDataPipeline = False
+        Transparent = True
+        DataPipelineName = 'ppData'
+        mmHeight = 3704
+        mmLeft = 60854
+        mmTop = 529
+        mmWidth = 52123
+        BandType = 4
+      end
+      object ppDBText23: TppDBText
+        UserName = 'DBText23'
+        DataField = 'CCOSID'
+        DataPipeline = ppData
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        DataPipelineName = 'ppData'
+        mmHeight = 3704
+        mmLeft = 113242
+        mmTop = 529
+        mmWidth = 9790
+        BandType = 4
+      end
+      object ppDBText24: TppDBText
+        UserName = 'DBText24'
+        DataField = 'CNTMTOEXT'
+        DataPipeline = ppData
+        DisplayFormat = '###,###,##0.00'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        ParentDataPipeline = False
+        TextAlignment = taRightJustified
+        Transparent = True
+        DataPipelineName = 'ppData'
+        mmHeight = 3704
+        mmLeft = 123031
+        mmTop = 529
+        mmWidth = 14288
+        BandType = 4
+      end
+      object ppDBText25: TppDBText
+        UserName = 'DBText25'
+        DataField = 'CNTFEMIS'
+        DataPipeline = ppData
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        ParentDataPipeline = False
+        Transparent = True
+        DataPipelineName = 'ppData'
+        mmHeight = 3704
+        mmLeft = 43656
+        mmTop = 529
+        mmWidth = 17198
+        BandType = 4
+      end
+      object ppDBText26: TppDBText
+        UserName = 'DBText26'
+        DataField = 'CNTREG'
+        DataPipeline = ppData
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        ParentDataPipeline = False
+        TextAlignment = taRightJustified
+        Transparent = True
+        DataPipelineName = 'ppData'
+        mmHeight = 3704
+        mmLeft = 5821
+        mmTop = 529
+        mmWidth = 2646
+        BandType = 4
+      end
+    end
+    object ppSummaryBand2: TppSummaryBand
+      mmBottomOffset = 0
+      mmHeight = 10054
+      mmPrintPosition = 0
+      object ppDBCalc3: TppDBCalc
+        UserName = 'DBCalc3'
+        AutoSize = True
+        DataField = 'CNTDEBEMN'
+        DataPipeline = ppData
+        DisplayFormat = '###,###,##0.00'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        ParentDataPipeline = False
+        TextAlignment = taRightJustified
+        Transparent = True
+        DataPipelineName = 'ppData'
+        mmHeight = 3704
+        mmLeft = 129382
+        mmTop = 2646
+        mmWidth = 26988
+        BandType = 7
+      end
+      object ppDBCalc4: TppDBCalc
+        UserName = 'DBCalc4'
+        AutoSize = True
+        DataField = 'CNTHABEMN'
+        DataPipeline = ppData
+        DisplayFormat = '###,###,##0.00'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        ParentDataPipeline = False
+        TextAlignment = taRightJustified
+        Transparent = True
+        DataPipelineName = 'ppData'
+        mmHeight = 3704
+        mmLeft = 149490
+        mmTop = 2646
+        mmWidth = 27252
+        BandType = 7
+      end
+      object ppLabel79: TppLabel
+        UserName = 'Label79'
+        Caption = '-------------------------------------'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        TextAlignment = taRightJustified
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 145786
+        mmTop = 0
+        mmWidth = 39158
+        BandType = 7
+      end
+      object ppLabel80: TppLabel
+        UserName = 'Label80'
+        Caption = '====================================='
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Draft 20cpi'
+        Font.Size = 8
+        Font.Style = []
+        TextAlignment = taRightJustified
+        Transparent = True
+        mmHeight = 3704
+        mmLeft = 126207
+        mmTop = 5821
+        mmWidth = 58738
+        BandType = 7
+      end
+    end
+  end
+end
